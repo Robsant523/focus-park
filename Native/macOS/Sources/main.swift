@@ -2,6 +2,12 @@ import AppKit
 import SafariServices
 import Foundation
 
+// A top-origin document keeps the first configuration controls visible when the
+// list grows and the window is resized.
+final class ConfigurationDocumentView: NSView {
+    override var isFlipped: Bool { true }
+}
+
 final class FocusAgent: NSObject, NSApplicationDelegate {
     let store = PolicyStore()
     var relay: FocusRelay?
@@ -89,8 +95,9 @@ final class FocusAgent: NSObject, NSApplicationDelegate {
     @objc func showConfiguration() {
         if let configWindow { configWindow.makeKeyAndOrderFront(nil); NSApp.activate(ignoringOtherApps: true); return }
         let config = store.configuration; chosenApps = config.apps
-        let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 640, height: 540), styleMask: [.titled, .closable], backing: .buffered, defer: false)
+        let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 640, height: 620), styleMask: [.titled, .closable, .resizable], backing: .buffered, defer: false)
         window.title = "Focus Park — Mac distractions"; window.center(); window.isReleasedWhenClosed = false
+        window.contentMinSize = NSSize(width: 540, height: 360)
         let stack = NSStackView(); stack.orientation = .vertical; stack.alignment = .leading; stack.spacing = 16; stack.translatesAutoresizingMaskIntoConstraints = false
         let title = NSTextField(labelWithString: "Make room for focus"); title.font = .systemFont(ofSize: 25, weight: .bold)
         let explanation = NSTextField(wrappingLabelWithString: "Choose apps for focus-screen interruptions and domains for Safari blocking. Your apps stay open. Enable the Focus Park Safari extension before selecting websites.")
@@ -105,8 +112,37 @@ final class FocusAgent: NSObject, NSApplicationDelegate {
         let save = NSButton(title: "Save distraction list", target: self, action: #selector(saveConfiguration))
         let notice = NSTextField(wrappingLabelWithString: "Lists can be changed between sessions."); self.notice = notice
         for view in [title, explanation, choose, apps, label, domains, tokenLabel, token, privacy, save, notice] { stack.addArrangedSubview(view) }
-        window.contentView?.addSubview(stack)
-        NSLayoutConstraint.activate([stack.leadingAnchor.constraint(equalTo: window.contentView!.leadingAnchor, constant: 28), stack.trailingAnchor.constraint(equalTo: window.contentView!.trailingAnchor, constant: -28), stack.topAnchor.constraint(equalTo: window.contentView!.topAnchor, constant: 28), domains.widthAnchor.constraint(equalTo: stack.widthAnchor), token.widthAnchor.constraint(equalTo: stack.widthAnchor)])
+        // Pin all four stack edges to a flipped document, whose height follows
+        // its intrinsic content. The document width follows the viewport so long
+        // app lists wrap vertically instead of hiding the Save button below it.
+        let scroll = NSScrollView(); scroll.translatesAutoresizingMaskIntoConstraints = false
+        scroll.hasVerticalScroller = true; scroll.hasHorizontalScroller = false
+        scroll.autohidesScrollers = true; scroll.drawsBackground = false
+        let document = ConfigurationDocumentView(); document.translatesAutoresizingMaskIntoConstraints = false
+        scroll.documentView = document
+        document.addSubview(stack)
+        let content = window.contentView!
+        content.addSubview(scroll)
+        var constraints = [
+            scroll.leadingAnchor.constraint(equalTo: content.leadingAnchor),
+            scroll.trailingAnchor.constraint(equalTo: content.trailingAnchor),
+            scroll.topAnchor.constraint(equalTo: content.topAnchor),
+            scroll.bottomAnchor.constraint(equalTo: content.bottomAnchor),
+            document.leadingAnchor.constraint(equalTo: scroll.contentView.leadingAnchor),
+            document.topAnchor.constraint(equalTo: scroll.contentView.topAnchor),
+            document.widthAnchor.constraint(equalTo: scroll.contentView.widthAnchor),
+            stack.leadingAnchor.constraint(equalTo: document.leadingAnchor, constant: 28),
+            stack.trailingAnchor.constraint(equalTo: document.trailingAnchor, constant: -28),
+            stack.topAnchor.constraint(equalTo: document.topAnchor, constant: 28),
+            stack.bottomAnchor.constraint(equalTo: document.bottomAnchor, constant: -28),
+            domains.widthAnchor.constraint(equalTo: stack.widthAnchor),
+            token.widthAnchor.constraint(equalTo: stack.widthAnchor)
+        ]
+        for field in [explanation, apps, privacy, notice] {
+            constraints.append(field.widthAnchor.constraint(equalTo: stack.widthAnchor))
+            field.setContentCompressionResistancePriority(.required, for: .vertical)
+        }
+        NSLayoutConstraint.activate(constraints)
         configWindow = window; window.makeKeyAndOrderFront(nil); NSApp.activate(ignoringOtherApps: true)
     }
     @objc func chooseApps() {
