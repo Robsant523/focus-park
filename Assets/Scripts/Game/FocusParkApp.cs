@@ -137,8 +137,8 @@ namespace FocusPark.Game
         IEnumerator StopMac(string sessionId) { busy=true; yield return blocking.MacRequest("stop",sessionId); busy=false; }
         void Preview()
         {
-            ParkRules.CanPlace(state,selected,px,pz,rotation,out var reason);
-            park.Preview(selected,px,pz,rotation,reason=="Ready to build.");
+            bool valid=ParkRules.CanPlace(state,selected,px,pz,rotation,out _);
+            park.Preview(selected,px,pz,rotation,valid);
         }
         Texture2D Solid(Color c) { var t=new Texture2D(1,1); t.SetPixel(0,0,c); t.Apply(); return t; }
         void Styles()
