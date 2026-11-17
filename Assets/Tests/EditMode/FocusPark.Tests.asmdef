@@ -1,0 +1,7 @@
+{
+  "name": "FocusPark.Tests",
+  "rootNamespace": "FocusPark.Tests",
+  "references": ["FocusPark.Core"],
+  "includePlatforms": ["Editor"],
+  "optionalUnityReferences": ["TestAssemblies"]
+}

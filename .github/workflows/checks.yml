@@ -1,0 +1,33 @@
+name: Milestone checks
+on:
+  push:
+  pull_request:
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - run: dotnet run --project Tools/CoreChecks/CoreChecks.csproj --configuration Release
+  apple-native:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Check native policy and Safari rules
+        run: Native/macOS/test.sh
+      - name: Check authenticated LAN relay
+        working-directory: Native/macOS
+        run: |
+          xcrun swiftc -swift-version 5 -module-cache-path "$PWD/Build/ModuleCache" -framework Network -framework CryptoKit Sources/PolicyStore.swift Sources/Relay.swift Tests/RelayHarness.swift -o Build/RelayHarness
+          python3 Tests/relay.test.py --headless
+      - name: Build Mac helper
+        run: Native/macOS/build.sh
+      - name: Build native app and Safari extension unsigned
+        run: xcodebuild -project Native/macOS/FocusParkMac.xcodeproj -scheme FocusParkHelper -configuration Debug -derivedDataPath /tmp/focuspark-mac CODE_SIGNING_ALLOWED=NO build
+      - name: Build native iPhone probe and monitor unsigned
+        run: xcodebuild -project Native/iOS/Probe/FocusParkProbe.xcodeproj -scheme FocusParkProbe -configuration Debug -sdk iphoneos -derivedDataPath /tmp/focuspark-ios CODE_SIGNING_ALLOWED=NO build

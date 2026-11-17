@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Focus Park",
+  "description": "Blocks your selected Safari websites during a Focus Park session.",
+  "version": "0.1.0",
+  "permissions": ["nativeMessaging", "declarativeNetRequest", "alarms", "storage", "tabs"],
+  "host_permissions": ["<all_urls>"],
+  "background": {"scripts": ["background.js"], "persistent": false},
+  "action": {"default_title": "Focus Park", "default_popup": "popup.html"}
+}

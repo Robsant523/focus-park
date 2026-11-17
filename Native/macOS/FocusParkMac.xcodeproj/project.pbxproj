@@ -1,0 +1,45 @@
+// !$*UTF8*$!
+{archiveVersion = 1; classes = {}; objectVersion = 56; objects = {
+CE27CBA7C2A74F428130C489 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sources/PolicyStore.swift"; sourceTree = "<group>";};
+F8EF64DCF191743E5E008EC5 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sources/Relay.swift"; sourceTree = "<group>";};
+EE695259D8E5BBAF3DD4A79B = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sources/main.swift"; sourceTree = "<group>";};
+0F0A290AA00A7C018AF66A4B = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SafariExtension/SafariWebExtensionHandler.swift"; sourceTree = "<group>";};
+C452590022EF347526AD00E5 = {isa = PBXFileReference; lastKnownFileType = text; path = "SafariExtension/Resources/manifest.json"; sourceTree = "<group>";};
+970AE007D0CF596A901DD292 = {isa = PBXFileReference; lastKnownFileType = text; path = "SafariExtension/Resources/background.js"; sourceTree = "<group>";};
+8769B6FF187F99311BE3517C = {isa = PBXFileReference; lastKnownFileType = text; path = "SafariExtension/Resources/popup.html"; sourceTree = "<group>";};
+D2D4A04EA076FAAEC3303853 = {isa = PBXFileReference; lastKnownFileType = text; path = "SafariExtension/Resources/popup.js"; sourceTree = "<group>";};
+71195552CAFE6895159DF0EB = {isa = PBXFileReference; lastKnownFileType = text; path = "SafariExtension/Resources/blocked.html"; sourceTree = "<group>";};
+8BCD5BC4CDFDF0918087C782 = {isa = PBXFileReference; explicitFileType = wrapper.application; path = FocusParkHelper.app; sourceTree = BUILT_PRODUCTS_DIR;};
+7D47DE7E0202D59799F715BD = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; path = FocusParkSafari.appex; sourceTree = BUILT_PRODUCTS_DIR;};
+FBDC4F23F93125BBEEAE800C = {isa = PBXGroup; children = (8BCD5BC4CDFDF0918087C782, 7D47DE7E0202D59799F715BD,); name = Products; sourceTree = "<group>";};
+E50290A24C49A459B43487C5 = {isa = PBXGroup; children = (CE27CBA7C2A74F428130C489, F8EF64DCF191743E5E008EC5, EE695259D8E5BBAF3DD4A79B, 0F0A290AA00A7C018AF66A4B, C452590022EF347526AD00E5, 970AE007D0CF596A901DD292, 8769B6FF187F99311BE3517C, D2D4A04EA076FAAEC3303853, 71195552CAFE6895159DF0EB, FBDC4F23F93125BBEEAE800C,); sourceTree = "<group>";};
+FE35C0D25089467D01E962E1 = {isa = PBXBuildFile; fileRef = CE27CBA7C2A74F428130C489;};
+D6E1424FED3B7793C6AABFC1 = {isa = PBXBuildFile; fileRef = F8EF64DCF191743E5E008EC5;};
+781394B6C0BDF2BF8A0CB2F7 = {isa = PBXBuildFile; fileRef = EE695259D8E5BBAF3DD4A79B;};
+971ED9D05B25DB6C4D7680D4 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (FE35C0D25089467D01E962E1, D6E1424FED3B7793C6AABFC1, 781394B6C0BDF2BF8A0CB2F7,); runOnlyForDeploymentPostprocessing = 0;};
+22CEF3677CE7651F3688DFDF = {isa = PBXBuildFile; fileRef = CE27CBA7C2A74F428130C489;};
+4FC5B8674396BBA133CE0792 = {isa = PBXBuildFile; fileRef = 0F0A290AA00A7C018AF66A4B;};
+2BB2C2209E42957EBC54035A = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (22CEF3677CE7651F3688DFDF, 4FC5B8674396BBA133CE0792,); runOnlyForDeploymentPostprocessing = 0;};
+8082C8CECE5482E6F4029B09 = {isa = PBXBuildFile; fileRef = C452590022EF347526AD00E5;};
+1442F3B059179D2BBCA1FD21 = {isa = PBXBuildFile; fileRef = 970AE007D0CF596A901DD292;};
+01D673390B452A6A8250F4EC = {isa = PBXBuildFile; fileRef = 8769B6FF187F99311BE3517C;};
+5BD6159590197F2EF05FB6DF = {isa = PBXBuildFile; fileRef = D2D4A04EA076FAAEC3303853;};
+0483047EE37C1EFAFBFD0065 = {isa = PBXBuildFile; fileRef = 71195552CAFE6895159DF0EB;};
+0C4FB0C2FF101B472A9DB6AA = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (8082C8CECE5482E6F4029B09, 1442F3B059179D2BBCA1FD21, 01D673390B452A6A8250F4EC, 5BD6159590197F2EF05FB6DF, 0483047EE37C1EFAFBFD0065,); runOnlyForDeploymentPostprocessing = 0;};
+B5F235D5B8CC63C82183E49E = {isa = PBXBuildFile; fileRef = 7D47DE7E0202D59799F715BD; settings = {ATTRIBUTES = (RemoveHeadersOnCopy,);};};
+CFFF27C96089B93150F3553B = {isa = PBXCopyFilesBuildPhase; buildActionMask = 2147483647; dstPath = ""; dstSubfolderSpec = 13; files = (B5F235D5B8CC63C82183E49E,); name = "Embed App Extensions"; runOnlyForDeploymentPostprocessing = 0;};
+D799BAE6088A90139B415FCC = {isa = PBXContainerItemProxy; containerPortal = 98F54143AB4E86B28C3AFEE0; proxyType = 1; remoteGlobalIDString = F98961015A0AC393630F4EDA; remoteInfo = FocusParkSafari;};
+DE58E2B17C19600779694943 = {isa = PBXTargetDependency; target = F98961015A0AC393630F4EDA; targetProxy = D799BAE6088A90139B415FCC;};
+E9B2E96ABC5F6856F2BE79CF = {isa = XCBuildConfiguration; buildSettings = {SWIFT_VERSION = "5.0"; MACOSX_DEPLOYMENT_TARGET = "13.0"; SDKROOT = "macosx"; CODE_SIGN_STYLE = "Automatic"; CLANG_ENABLE_MODULES = "YES"; SWIFT_OPTIMIZATION_LEVEL = "-Onone"; PRODUCT_BUNDLE_IDENTIFIER = "com.focuspark.helper"; PRODUCT_NAME = "FocusParkHelper"; INFOPLIST_FILE = "Info.plist"; CODE_SIGN_ENTITLEMENTS = "Helper.entitlements"; ENABLE_HARDENED_RUNTIME = "YES"; }; name = Debug;};
+5A8C91857F674E16E2724F47 = {isa = XCBuildConfiguration; buildSettings = {SWIFT_VERSION = "5.0"; MACOSX_DEPLOYMENT_TARGET = "13.0"; SDKROOT = "macosx"; CODE_SIGN_STYLE = "Automatic"; CLANG_ENABLE_MODULES = "YES"; SWIFT_OPTIMIZATION_LEVEL = "-O"; PRODUCT_BUNDLE_IDENTIFIER = "com.focuspark.helper"; PRODUCT_NAME = "FocusParkHelper"; INFOPLIST_FILE = "Info.plist"; CODE_SIGN_ENTITLEMENTS = "Helper.entitlements"; ENABLE_HARDENED_RUNTIME = "YES"; }; name = Release;};
+8A8642C6B28662881237D956 = {isa = XCConfigurationList; buildConfigurations = (E9B2E96ABC5F6856F2BE79CF, 5A8C91857F674E16E2724F47,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release;};
+21B12CA184ED22B33BAD04F1 = {isa = XCBuildConfiguration; buildSettings = {SWIFT_VERSION = "5.0"; MACOSX_DEPLOYMENT_TARGET = "13.0"; SDKROOT = "macosx"; CODE_SIGN_STYLE = "Automatic"; CLANG_ENABLE_MODULES = "YES"; SWIFT_OPTIMIZATION_LEVEL = "-Onone"; PRODUCT_BUNDLE_IDENTIFIER = "com.focuspark.helper.safari"; PRODUCT_NAME = "FocusParkSafari"; INFOPLIST_FILE = "SafariExtension/Info.plist"; CODE_SIGN_ENTITLEMENTS = "SafariExtension/Extension.entitlements"; APPLICATION_EXTENSION_API_ONLY = "YES"; SKIP_INSTALL = "YES"; ENABLE_HARDENED_RUNTIME = "YES"; }; name = Debug;};
+D1883375A16458E5753D3696 = {isa = XCBuildConfiguration; buildSettings = {SWIFT_VERSION = "5.0"; MACOSX_DEPLOYMENT_TARGET = "13.0"; SDKROOT = "macosx"; CODE_SIGN_STYLE = "Automatic"; CLANG_ENABLE_MODULES = "YES"; SWIFT_OPTIMIZATION_LEVEL = "-O"; PRODUCT_BUNDLE_IDENTIFIER = "com.focuspark.helper.safari"; PRODUCT_NAME = "FocusParkSafari"; INFOPLIST_FILE = "SafariExtension/Info.plist"; CODE_SIGN_ENTITLEMENTS = "SafariExtension/Extension.entitlements"; APPLICATION_EXTENSION_API_ONLY = "YES"; SKIP_INSTALL = "YES"; ENABLE_HARDENED_RUNTIME = "YES"; }; name = Release;};
+85D7345A673EEFA7AB079E69 = {isa = XCConfigurationList; buildConfigurations = (21B12CA184ED22B33BAD04F1, D1883375A16458E5753D3696,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release;};
+89E1FD6268CC0F221A2BE178 = {isa = XCBuildConfiguration; buildSettings = {SWIFT_VERSION = "5.0"; MACOSX_DEPLOYMENT_TARGET = "13.0"; SDKROOT = "macosx"; CODE_SIGN_STYLE = "Automatic"; CLANG_ENABLE_MODULES = "YES"; SWIFT_OPTIMIZATION_LEVEL = "-Onone"; }; name = Debug;};
+E6DE6C99132752C914FEF632 = {isa = XCBuildConfiguration; buildSettings = {SWIFT_VERSION = "5.0"; MACOSX_DEPLOYMENT_TARGET = "13.0"; SDKROOT = "macosx"; CODE_SIGN_STYLE = "Automatic"; CLANG_ENABLE_MODULES = "YES"; SWIFT_OPTIMIZATION_LEVEL = "-O"; }; name = Release;};
+49EA05A46B1A86EA7E413B43 = {isa = XCConfigurationList; buildConfigurations = (89E1FD6268CC0F221A2BE178, E6DE6C99132752C914FEF632,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release;};
+7D1043473D55BFA90E8530D3 = {isa = PBXNativeTarget; buildConfigurationList = 8A8642C6B28662881237D956; buildPhases = (971ED9D05B25DB6C4D7680D4, CFFF27C96089B93150F3553B,); buildRules = (); dependencies = (DE58E2B17C19600779694943,); name = FocusParkHelper; productName = FocusParkHelper; productReference = 8BCD5BC4CDFDF0918087C782; productType = "com.apple.product-type.application";};
+F98961015A0AC393630F4EDA = {isa = PBXNativeTarget; buildConfigurationList = 85D7345A673EEFA7AB079E69; buildPhases = (2BB2C2209E42957EBC54035A, 0C4FB0C2FF101B472A9DB6AA,); buildRules = (); dependencies = (); name = FocusParkSafari; productName = FocusParkSafari; productReference = 7D47DE7E0202D59799F715BD; productType = "com.apple.product-type.app-extension";};
+98F54143AB4E86B28C3AFEE0 = {isa = PBXProject; attributes = {LastUpgradeCheck = 1600;}; buildConfigurationList = 49EA05A46B1A86EA7E413B43; compatibilityVersion = "Xcode 14.0"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en, Base,); mainGroup = E50290A24C49A459B43487C5; productRefGroup = FBDC4F23F93125BBEEAE800C; projectDirPath = ""; projectRoot = ""; targets = (7D1043473D55BFA90E8530D3, F98961015A0AC393630F4EDA,);};
+}; rootObject = 98F54143AB4E86B28C3AFEE0;}
